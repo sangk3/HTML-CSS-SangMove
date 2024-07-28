@@ -1,0 +1,207 @@
+:root {
+    --hover-color:#e56d50;
+    --primary-color: rgb(238, 75, 43);
+    --white-color: #fff;
+    --black-color: #f000;
+    --text-color: #333;
+    --border-color: #dbdbdb;
+    --navbar-height:27px;
+    --header-height:120px;
+    --header-with-search-height:calc(var(--header-height) - var(--navbar-height));
+}
+
+* {
+    /* các element trong thẻ html kế thừa box-sizing: border-box */
+    box-sizing: inherit;
+}
+
+html {
+    /* 62.5% tương ứng với font-size:10px do mặc định trình duyệt font-size: 16px */
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+
+}
+
+/* sử dụng grid cho responsive
+-cáu trúc grid:
++ 1 grid có nhiều grid__row và 1 grid__row có nhiều grid__column
+
+.grid{
+.row{
+.column-2{}
+.column-10{}
+}
+.row-2{
+
+}
+
+
+*/
+
+.grid {
+    /* nếu như kích thước web lớn hơn 1200px thì co màn hình đó bằng kích thước trình duyệt */
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid__full-width {
+    width: 100%;
+}
+
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left:-5px;
+    margin-right: -5px;
+
+}
+.grid__column-2{
+width: 16.667%;
+padding-left:5px;
+padding-right: 5px;
+}
+.grid__column-10{
+width: 83.333%;
+padding-left:5px;
+padding-right: 5px;
+}
+/* bên cột chiếm 10 cột thì có 5 cột 2-4 và môi cột chiếm 20% của grid__column-10 */
+.grid__column-2-4{
+    width: 20%;
+padding-left:5px;
+padding-right: 5px;
+}
+
+/* animation header_qr */
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+/* tạo animation thu phóng  */
+@keyframes growth {
+    from {
+        transform:scale(var(--growth-from)) ;
+    }
+
+    to {
+        transform:scale(var(--growth-to)) ;
+    }
+}
+
+.modal {
+    /* cố định trên trình duyệt 1 lớp modal phủ lên toàn bộ trình duyệt  */
+    position: fixed;
+    /* phủ toàn màn hình */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    animation: fadein linear 0.2s;
+}
+
+.modal__overlay {
+    /* nếu không xét width và height thì mặc định thằng overlay chỉ có width bằng toàn bộ chiều rông thẻ cha */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.modal__body {
+    /* tăng kích thước cho body từ 70% - 100% kích thước của nó */
+    --growth-from:0.7;
+    --growth-to:1;
+    /* width: 500px; */
+    /* height: 300px; */
+    margin: auto;
+
+    z-index: 1;
+    position: relative;
+    animation: growth linear .2s;
+
+}
+
+.btn {
+    min-width: 124px;
+    height: 33px;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-color);
+    line-height: 1.4rem;
+    background-color: white;
+}
+
+.btn--normal {
+    background-color: transparent;
+    color: #000;
+
+}
+
+.btn--normal:hover {
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+/* 2 class đè lên css của .btn:hover */
+.btn.btn--primary {
+    margin-left: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    line-height: 3.3rem;
+    font-size: 1.4rem;
+}
+
+.btn.btn--primary:hover{
+    background-color: var(--hover-color);
+}
+
+.btn--disable {
+    cursor: default;
+    background-color: #999;
+}
+.grid__row.app-content{
+    padding-top: 36px;
+}
+
+/* Phân trang */
+.pagination{
+list-style: none;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.pagination-item__link{
+    text-decoration: none;
+    color: #A29BA5;
+    font-size: 2rem;
+    margin-left:47px; 
+    border-radius: 2px;
+    font-weight: 300;
+}
+
+
+.paginantion-item__icon--active{
+    --height:30px;
+    min-width: 40px;
+    height: var(--height);
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    display: inline-block;
+    text-align: center;
+    line-height:var(--height);
+}
+.paginantion-item__icon--active:hover{
+    background-color: var(--hover-color);
+}
